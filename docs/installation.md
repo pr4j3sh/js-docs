@@ -6,7 +6,7 @@ slug: /installation
 
 # Installation
 
-To use `js-docs` in your project, clone using `@pr4j3sh/frames`
+To use `js-docs` in your project, clone using `@pr4j3sh/frames` inside your project
 
 ```sh
 npm create @pr4j3sh/frames@latest js-docs docs

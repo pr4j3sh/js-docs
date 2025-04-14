@@ -1,41 +1,78 @@
-# Website
+# js-docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This is a documentation template for Javascript applications.
 
-### Installation
+# Installation
 
-```
-$ yarn
-```
+- Clone using `@pr4j3sh/frames` inside your project
 
-### Local Development
-
-```
-$ yarn start
+```sh
+npm create @pr4j3sh/frames@latest js-docs docs
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+# Usage
 
-### Build
+- Create `jsdoc.json` file in your project's root directory
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```json
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src"],
+    "includePattern": ".+\\.(j|t)s(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  }
+}
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- Create `config.json` file in your project's root directory
+
+```json
+{
+  "locales": ["ko"],
+  "outDir": "./docs/docs/api",
+  "localesDir": "./docs/i18n/{locale}/docusaurus-plugin-content-docs/current/api",
+  "sidebar": "./docs",
+  "prefix": "api/",
+  "jsdoc": "./jsdoc.json"
+}
+```
+
+- Install `jsdoc-to-mdx` as a dev dependency
+
+```bash
+npm i -D jsdoc-to-mdx
+```
+
+- Add this line to your `package.json` in scripts
+
+```json
+{
+  "scripts": {
+    "docs": "npx jsdoc-to-mdx -c config.json"
+  }
+}
+```
+
+- Create docs scaffold
+
+```bash
+npm run docs
+```
+
+- View docs
+
+```bash
+cd docs
+npm run start
+```
+
+> View docs in your browser.
+
+## References
+
+- [jsdoc](https://jsdoc.app/)
+- [jsdoc-to-mdx](https://naver.github.io/jsdoc-to-mdx/)
